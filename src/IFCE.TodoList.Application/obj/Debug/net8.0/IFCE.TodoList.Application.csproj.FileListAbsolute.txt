@@ -1,0 +1,15 @@
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/bin/Debug/net8.0/IFCE.TodoList.Application.deps.json
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/bin/Debug/net8.0/IFCE.TodoList.Application.dll
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/bin/Debug/net8.0/IFCE.TodoList.Application.pdb
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/bin/Debug/net8.0/IFCE.TodoList.Domain.dll
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/bin/Debug/net8.0/IFCE.TodoList.Domain.pdb
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.csproj.AssemblyReference.cache
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.AssemblyInfoInputs.cache
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.AssemblyInfo.cs
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.csproj.CoreCompileInputs.cache
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.dll
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/refint/IFCE.TodoList.Application.dll
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.pdb
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/ref/IFCE.TodoList.Application.dll
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.Tod.ADC005A8.Up2Date

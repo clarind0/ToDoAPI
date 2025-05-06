@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/IFCE.TodoList.API.props" />
+</Project>
