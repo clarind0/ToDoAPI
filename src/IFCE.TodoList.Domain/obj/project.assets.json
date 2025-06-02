@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "FluentValidation/12.0.0-preview1": {
+      "FluentValidation/11.10.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/FluentValidation.dll": {
@@ -18,25 +18,35 @@
     }
   },
   "libraries": {
-    "FluentValidation/12.0.0-preview1": {
-      "sha512": "sFp+S7r98V0RQd6Ws9ecFTneWGGMK69XA4Wq+2ZxuNzoRTcs6AbZFyb+pfCwOUx4zgJiKf6BjcFSQrrAaxn+Dw==",
+    "FluentValidation/11.10.0": {
+      "sha512": "qsJGSJDdZ8qiG+lVJ70PZfJHcEdq8UQZ/tZDXoj78/iHKG6lVKtMJsD11zyyv/IPc7rwqGqnFoFLTNzpo3IPYg==",
       "type": "package",
-      "path": "fluentvalidation/12.0.0-preview1",
+      "path": "fluentvalidation/11.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "fluent-validation-icon.png",
-        "fluentvalidation.12.0.0-preview1.nupkg.sha512",
+        "fluentvalidation.11.10.0.nupkg.sha512",
         "fluentvalidation.nuspec",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/net6.0/FluentValidation.dll",
+        "lib/net6.0/FluentValidation.xml",
+        "lib/net7.0/FluentValidation.dll",
+        "lib/net7.0/FluentValidation.xml",
         "lib/net8.0/FluentValidation.dll",
-        "lib/net8.0/FluentValidation.xml"
+        "lib/net8.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml",
+        "lib/netstandard2.1/FluentValidation.dll",
+        "lib/netstandard2.1/FluentValidation.xml"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "FluentValidation >= 12.0.0-preview1"
+      "FluentValidation >= 11.10.0"
     ]
   },
   "packageFolders": {
@@ -70,11 +80,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -83,7 +88,7 @@
         "dependencies": {
           "FluentValidation": {
             "target": "Package",
-            "version": "[12.0.0-preview1, )"
+            "version": "[11.10.0, )"
           }
         },
         "imports": [
@@ -102,7 +107,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/guilherme/.dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -6,8 +6,8 @@ namespace IFCE.TodoList.Domain.Validators;
 public class TodoListValidator : AbstractValidator<TodoList.Domain.Entities.TodoList>
 {
     public TodoListValidator()
-    {
-        RuleFor(x => x.UserId)
+    { 
+        RuleFor(x => x.Id)
             .NotEmpty()
             .NotNull()
             .WithMessage("Id vazio ou nulo");
@@ -22,6 +22,10 @@ public class TodoListValidator : AbstractValidator<TodoList.Domain.Entities.Todo
             
             .MaximumLength(50)
             .WithMessage("O nome deve ter no máximo 50 caracteres");
+        
+        RuleFor(x => x.Deadline)
+            .GreaterThan(DateTime.Now)
+            .WithMessage("Informe uma data maior do que o momento presente");
     }
     
 }

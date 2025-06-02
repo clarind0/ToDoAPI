@@ -16,21 +16,16 @@ public class TarefaMapping : IEntityTypeConfiguration<Tarefa>
         
         builder.Property(t => t.Concluded)
             .HasDefaultValue(false);
-        
+
         builder.Property(t => t.CreatedAt)
-            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+            .HasDefaultValue(DateTime.Now);
 
         builder.Property(t => t.UpdatedAt)
-            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+            .HasDefaultValue(DateTime.Now);
 
-        builder.HasOne(t => t.User)
-            .WithMany(u => u.Tasks)
-            .HasForeignKey(t => t.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasOne(t => t.AssignmentList)
-            .WithMany(l => l.Tasks)
-            .HasForeignKey(t => t.AssignmentListId)
+        builder.HasOne(t => t.TodoList)
+            .WithMany(l => l.Tarefas)
+            .HasForeignKey(t => t.TodoList)
             .OnDelete(DeleteBehavior.SetNull);
     }
     

@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "MMq8x4VHLEo=",
+  "dgSpecHash": "3qT+4AVVkKeBjcsyBI2YoC9/jy1WeR3K6tADqIgmBu0GX0iV/S0LrJ9ZpCrNubTV7w7ArMpt2jLL+ORx4dvvyg==",
   "success": true,
   "projectFilePath": "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/IFCE.TodoList.Domain.csproj",
   "expectedPackageFiles": [
-    "/home/guilherme/.nuget/packages/fluentvalidation/12.0.0-preview1/fluentvalidation.12.0.0-preview1.nupkg.sha512"
+    "/home/guilherme/.nuget/packages/fluentvalidation/11.10.0/fluentvalidation.11.10.0.nupkg.sha512"
   ],
   "logs": []
 }

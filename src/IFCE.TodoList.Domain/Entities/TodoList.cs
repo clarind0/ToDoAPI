@@ -2,13 +2,15 @@ namespace IFCE.TodoList.Domain.Entities;
 
 public class TodoList
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
+    public string Descricao { get; set; } = string.Empty;
     
-    public Guid UserId { get; set; }
-    public Usuario User { get; set; } = null!;
+    public int IdUsuario { get; set; }
+    public Usuario Usuario { get; set; } = null!;
+    public ICollection<Tarefa>? Tarefas { get; set; }
     
-    public List<Tarefa> Tasks { get; set; } = new();
+    public DateTime? Deadline { get; set; }
     
     public DateTime CreatedAt { get; set; } =  DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } =  DateTime.UtcNow;

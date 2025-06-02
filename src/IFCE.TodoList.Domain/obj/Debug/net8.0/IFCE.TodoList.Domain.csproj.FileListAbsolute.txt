@@ -6,6 +6,7 @@
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/obj/Debug/net8.0/IFCE.TodoList.Domain.AssemblyInfoInputs.cache
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/obj/Debug/net8.0/IFCE.TodoList.Domain.AssemblyInfo.cs
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/obj/Debug/net8.0/IFCE.TodoList.Domain.csproj.CoreCompileInputs.cache
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/obj/Debug/net8.0/IFCE.TodoList.Domain.sourcelink.json
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/obj/Debug/net8.0/IFCE.TodoList.Domain.dll
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/obj/Debug/net8.0/refint/IFCE.TodoList.Domain.dll
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/obj/Debug/net8.0/IFCE.TodoList.Domain.pdb

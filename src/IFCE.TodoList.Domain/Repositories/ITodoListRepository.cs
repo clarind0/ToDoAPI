@@ -4,5 +4,6 @@ namespace IFCE.TodoList.Domain.Repositories;
 
 public interface ITodoListRepository : IRepository<Entities.TodoList>
 {
-    Task<IEnumerable<Entities.TodoList>> GetListByUserIdAsync(Guid userId);
+    Task<IEnumerable<Entities.TodoList>> GetListByUserIdAsync(int idUsuario);
+    Task SaveChangesAsync();
 }

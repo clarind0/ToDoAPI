@@ -10,7 +10,6 @@ public class Repository<T>  : IRepository<T> where T : class
     private readonly ApplicationDbContext _context;
     private readonly DbSet<T> _dbSet;
     private IRepository<T> _repositoryImplementation;
-    private IRepository<T> _repositoryImplementation1;
 
     public Repository(ApplicationDbContext context)
     {
@@ -18,7 +17,7 @@ public class Repository<T>  : IRepository<T> where T : class
         _dbSet = context.Set<T>();
     }
 
-    public async Task<T?> GetByIdAsync(Guid id)
+    public async Task<T?> GetByIdAsync(int id)
     {
         return await _dbSet.FindAsync(id);
     }
@@ -52,8 +51,8 @@ public class Repository<T>  : IRepository<T> where T : class
         await _context.SaveChangesAsync();
     }
 
-    public Task SaveChangesAsync()
+    public async Task SaveChangesAsync()
     {
-        throw new NotImplementedException();
+        await _context.SaveChangesAsync();
     }
 }

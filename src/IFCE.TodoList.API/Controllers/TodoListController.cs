@@ -1,7 +1,8 @@
 using System.Security.Claims;
+using IFCE.TodoList.Application.DTO;
+using IFCE.TodoList.Application.Interfaces;
 using IFCE.TodoList.Domain.Entities;
-using IFCE.TodoList.Domain.Interfaces;
-using IFCE.TodoList.Domain.Services;
+using IFCE.TodoList.Infra.Data.Contexts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,63 +10,59 @@ namespace IFCE.TodoList.API.Controllers;
 
 [Authorize] // Requer autenticação para acessar as rotas
 [ApiController]
-[Route("api/todolists")]
+[Route("api/todolist")]
 public class TodoListController : ControllerBase
 {
-    private readonly ITodoListService _todoListService;
-
-    public TodoListController(ITodoListService todoListService)
+    
+    private readonly ITodoListInterface _todoListInterface;
+    public TodoListController(ITodoListInterface todoListInterface)
     {
-        _todoListService = todoListService;
+        _todoListInterface = todoListInterface;
     }
-
-    private Guid GetUserId() =>
-        Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? throw new UnauthorizedAccessException());
-
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
+    
+    [HttpGet("ListarTodoLists")]
+    public async Task<ActionResult<Response<List<Domain.Entities.TodoList>>>> ListarTodoLists()
     {
-        var userId = GetUserId();   
-        var todoLists = await _todoListService.GetListByUserIdAsync(userId);
+        var todoLists = await _todoListInterface.ListarTodoLists();
+        
+        return Ok(todoLists);
+    }
+    
+    [HttpGet("BuscarTodoListPorId/{idTodoList}")]
+    public async Task<ActionResult<Response<Domain.Entities.TodoList>>> BuscarTodoLIstPorId(int idTodoList)
+    {
+        var todoList = await _todoListInterface.BuscarTodoListPorId(idTodoList);
+        
+        return Ok(todoList);
+    }
+    
+    [HttpGet("BuscarTodoListPorIdUsuario/{idUsuario}")]
+    public async Task<ActionResult<Response<Domain.Entities.TodoList>>> BuscarTodoListPorIdUsuario(int idUsuario)
+    {
+        var todoList = await _todoListInterface.BuscarTodoListPorIdUsuario(idUsuario);
+        
+        return Ok(todoList);
+    }
+    
+    [HttpPost("CriarTodoList")]
+    public async Task<ActionResult<Response<List<Domain.Entities.TodoList>>>> CriarTodoList(CreateTodoListDto createTodoListDto)
+    {
+        var todoLists = await _todoListInterface.CriarTodoList(createTodoListDto);
+        
         return Ok(todoLists);
     }
 
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetById(Guid id)
+    [HttpPut("AtualizarTodoList")]
+    public async Task<ActionResult<Response<List<Domain.Entities.TodoList>>>> AtualizarTodoList(EditTodoListDto editTodoListDto)
     {
-        var userId = GetUserId();
-        var todoList = await _todoListService.GetByIdAsync(id, userId);
-        if (todoList == null) return NotFound();
-        return Ok(todoList);
+        var todoLists = await _todoListInterface.AtualizarTodoList(editTodoListDto);
+        return Ok(todoLists);
     }
-
-    [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Domain.Entities.TodoList todoList)
+    
+    [HttpDelete("DeletarTodoList/{idTodoList}")]
+    public async Task<ActionResult<Response<List<Domain.Entities.TodoList>>>> DeletarTodoList(int idTodoList)
     {
-        var userId = GetUserId();
-        if (string.IsNullOrWhiteSpace(todoList.Nome))
-            return BadRequest("O nome da lista é obrigatório.");
-
-        todoList.UserId = userId;
-        var newList = await _todoListService.CreateAsync(todoList);
-        return CreatedAtAction(nameof(GetById), new { id = newList.Id }, newList);
-    }
-
-    [HttpPut("{id:guid}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] Domain.Entities.TodoList todoList)
-    {
-        var userId = GetUserId();
-        if (id != todoList.Id) return BadRequest("IDs não conferem.");
-        
-        var updatedList = await _todoListService.UpdateAsync(todoList, userId);
-        return Ok(updatedList);
-    }
-
-    [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> Delete(Guid id)
-    {
-        var userId = GetUserId();
-        await _todoListService.DeleteAsync(id, userId);
-        return NoContent();
+        var todoLists = await _todoListInterface.DeletarTodoList(idTodoList);
+        return Ok(todoLists);
     }
 }

@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "FluentValidation/12.0.0-preview1": {
+      "FluentValidation/11.10.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/FluentValidation.dll": {
@@ -842,24 +842,11 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "IFCE.TodoList.Application/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "IFCE.TodoList.Domain": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/IFCE.TodoList.Application.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/IFCE.TodoList.Application.dll": {}
-        }
-      },
       "IFCE.TodoList.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "FluentValidation": "12.0.0-preview1"
+          "FluentValidation": "11.10.0"
         },
         "compile": {
           "bin/placeholder/IFCE.TodoList.Domain.dll": {}
@@ -871,19 +858,29 @@
     }
   },
   "libraries": {
-    "FluentValidation/12.0.0-preview1": {
-      "sha512": "sFp+S7r98V0RQd6Ws9ecFTneWGGMK69XA4Wq+2ZxuNzoRTcs6AbZFyb+pfCwOUx4zgJiKf6BjcFSQrrAaxn+Dw==",
+    "FluentValidation/11.10.0": {
+      "sha512": "qsJGSJDdZ8qiG+lVJ70PZfJHcEdq8UQZ/tZDXoj78/iHKG6lVKtMJsD11zyyv/IPc7rwqGqnFoFLTNzpo3IPYg==",
       "type": "package",
-      "path": "fluentvalidation/12.0.0-preview1",
+      "path": "fluentvalidation/11.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "fluent-validation-icon.png",
-        "fluentvalidation.12.0.0-preview1.nupkg.sha512",
+        "fluentvalidation.11.10.0.nupkg.sha512",
         "fluentvalidation.nuspec",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/net6.0/FluentValidation.dll",
+        "lib/net6.0/FluentValidation.xml",
+        "lib/net7.0/FluentValidation.dll",
+        "lib/net7.0/FluentValidation.xml",
         "lib/net8.0/FluentValidation.dll",
-        "lib/net8.0/FluentValidation.xml"
+        "lib/net8.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml",
+        "lib/netstandard2.1/FluentValidation.dll",
+        "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -2197,11 +2194,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "IFCE.TodoList.Application/1.0.0": {
-      "type": "project",
-      "path": "../IFCE.TodoList.Application/IFCE.TodoList.Application.csproj",
-      "msbuildProject": "../IFCE.TodoList.Application/IFCE.TodoList.Application.csproj"
-    },
     "IFCE.TodoList.Domain/1.0.0": {
       "type": "project",
       "path": "../IFCE.TodoList.Domain/IFCE.TodoList.Domain.csproj",
@@ -2210,7 +2202,6 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "IFCE.TodoList.Application >= 1.0.0",
       "IFCE.TodoList.Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.10",
@@ -2244,9 +2235,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/IFCE.TodoList.Application.csproj": {
-              "projectPath": "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/IFCE.TodoList.Application.csproj"
-            },
             "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/IFCE.TodoList.Domain.csproj": {
               "projectPath": "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/IFCE.TodoList.Domain.csproj"
             }
@@ -2257,11 +2245,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2309,7 +2292,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/guilherme/.dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

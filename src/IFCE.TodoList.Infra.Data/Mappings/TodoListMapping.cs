@@ -14,14 +14,14 @@ public class TodoListMapping : IEntityTypeConfiguration<Domain.Entities.TodoList
             .HasMaxLength(100);
 
         builder.Property(l => l.CreatedAt)
-            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+            .HasDefaultValue(DateTime.Now);
 
         builder.Property(l => l.UpdatedAt)
-            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+            .HasDefaultValue(DateTime.Now);
 
-        builder.HasOne(l => l.User)
+        builder.HasOne(l => l.Usuario)
             .WithMany(u => u.TodoLists)
-            .HasForeignKey(l => l.UserId)
+            .HasForeignKey(l => l.Id)
             .OnDelete(DeleteBehavior.Cascade);
     }
     

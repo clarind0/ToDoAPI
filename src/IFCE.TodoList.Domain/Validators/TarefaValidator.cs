@@ -19,7 +19,7 @@ public class TarefaValidator : AbstractValidator<Tarefa>
             .MaximumLength(100)
             .WithMessage("A descrição deve ter no máximo 100 caracteres");
         
-        RuleFor(x => x.UserId)
+        RuleFor(x => x.Id)
             .NotNull()
             .WithMessage("O Id do usuário não pode ser nulo.")
 
@@ -32,9 +32,5 @@ public class TarefaValidator : AbstractValidator<Tarefa>
             
             .NotNull()
             .WithMessage("O campo Concluded não pode ser nulo");
-
-        RuleFor(x => x.Deadline)
-            .GreaterThan(DateTime.Now)
-            .WithMessage("Informe uma data maior do que o momento presente");
     }
 }

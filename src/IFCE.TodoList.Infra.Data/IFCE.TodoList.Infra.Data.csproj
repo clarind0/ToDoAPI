@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IFCE.TodoList.Domain\IFCE.TodoList.Domain.csproj" />
-    <ProjectReference Include="..\IFCE.TodoList.Application\IFCE.TodoList.Application.csproj" />
+    
 
   </ItemGroup>
 

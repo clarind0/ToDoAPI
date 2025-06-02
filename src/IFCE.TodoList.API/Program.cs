@@ -1,7 +1,7 @@
 using System.Text;
+using IFCE.TodoList.Application.Interfaces;
 using IFCE.TodoList.Application.Services;
 using IFCE.TodoList.Domain.Repositories;
-using IFCE.TodoList.Domain.Interfaces;
 using IFCE.TodoList.Infra.Data.Contexts;
 using IFCE.TodoList.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -18,12 +18,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // --- Repositórios ---
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-builder.Services.AddScoped<ITodoListRepository, TodoListRepository>();
+// builder.Services.AddScoped<ITodoListRepository, TodoListRepository>();
 builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 
 // --- Serviços ---
-builder.Services.AddScoped<ITodoListService, TodoListService>();
-builder.Services.AddScoped<ITarefaService, TarefaService>();
+builder.Services.AddScoped<ITodoListInterface, TodoListService>();
+builder.Services.AddScoped<ITarefaInterface, TarefaService>();
+builder.Services.AddScoped<ITokenInterface, TokenService>();
 
 // --- Controllers ---
 builder.Services.AddControllers();

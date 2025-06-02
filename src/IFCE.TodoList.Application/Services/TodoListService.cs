@@ -1,66 +1,189 @@
+using IFCE.TodoList.Application.DTO;
+using IFCE.TodoList.Application.Interfaces;
 using IFCE.TodoList.Domain.Repositories;
 using IFCE.TodoList.Domain.Entities;
-using IFCE.TodoList.Domain.Interfaces;
+using IFCE.TodoList.Infra.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace IFCE.TodoList.Application.Services;
 
-public class TodoListService : ITodoListService
+public class TodoListService : ITodoListInterface
 {
-    private readonly ITodoListRepository _todoListRepository;
+    private readonly ApplicationDbContext _context;
 
-    public TodoListService(ITodoListRepository todoListRepository)
+    public TodoListService(ApplicationDbContext context)
     {
-        _todoListRepository = todoListRepository;
+        _context = context;
+    }
+    public async Task<Response<List<Domain.Entities.TodoList>>> ListarTodoLists()
+    {
+        Response<List<Domain.Entities.TodoList>> resposta = new Response<List<Domain.Entities.TodoList>>();
+        try
+        {
+            var todoList = await _context.TodoLists.ToListAsync();
+            
+            resposta.Dados = todoList;
+            resposta.Mensagem = "Todos os to do's foram coletados com sucesso!";
+            
+            return resposta;
+        }
+        catch (Exception ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+            return resposta;
+        }
     }
 
-    public async Task<Domain.Entities.TodoList?> GetByIdAsync(Guid id, Guid userId)
+    public async Task<Response<Domain.Entities.TodoList>> BuscarTodoListPorId(int idTodoList)
     {
-        var todoList = await _todoListRepository.GetByIdAsync(id);
-        return todoList?.UserId == userId ? todoList : null;
+        Response<Domain.Entities.TodoList> resposta = new Response<Domain.Entities.TodoList>();
+        try
+        {
+            var todoList = await _context.TodoLists.FirstOrDefaultAsync(todoListBanco => todoListBanco.Id == idTodoList);
+
+            if (todoList == null)
+            {
+                resposta.Mensagem = "Nenhum registro localizado!";
+                return resposta;
+            }
+            
+            resposta.Dados = todoList;
+            resposta.Mensagem = "To do localizado com sucesso!";
+            
+            return resposta;
+        }
+        catch (Exception ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+            return resposta;
+        }
     }
 
-    public async Task<IEnumerable<Domain.Entities.TodoList>> GetListByUserIdAsync(Guid userId)
+    public async Task<Response<Domain.Entities.TodoList>> BuscarTodoListPorIdUsuario(int idUsuario)
     {
-        return await _todoListRepository.GetListByUserIdAsync(userId);
+        Response<Domain.Entities.TodoList> resposta = new Response<Domain.Entities.TodoList>();
+        try
+        {
+            var usuario = await _context.Usuarios
+                .Include(a => a.TodoLists).
+                FirstOrDefaultAsync(usuarioBanco => usuarioBanco.Id == idUsuario);
+
+            if (usuario == null)
+            {
+                resposta.Mensagem = "Nenhum registro localizado!";
+                return resposta;
+            }
+
+            resposta.Dados = usuario.TodoLists.FirstOrDefault();;
+            resposta.Mensagem = "To do localizado com sucesso!";
+            return resposta;
+        }
+        catch (Exception ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+            return resposta;
+        }
     }
 
-    public async Task<Domain.Entities.TodoList> CreateAsync(Domain.Entities.TodoList todoList)
+    public async Task<Response<List<Domain.Entities.TodoList>>> CriarTodoList(CreateTodoListDto createTodoListDto)
     {
-        // Validar nome
-        if (string.IsNullOrWhiteSpace(todoList.Nome))
-            throw new ArgumentException("O nome da lista não pode ser vazio.");
+        Response<List<Domain.Entities.TodoList>> resposta = new Response<List<Domain.Entities.TodoList>>();
 
-        // Validar UserId
-        if (todoList.UserId == Guid.Empty)
-            throw new ArgumentException("O ID do usuário é inválido.");
+        try
+        {
+            var todolist = new Domain.Entities.TodoList()
+            {
+                Nome = createTodoListDto.Nome,
+                Usuario = createTodoListDto.Usuario,
+                Deadline = createTodoListDto.Deadline,
+                Tarefas = createTodoListDto.Tarefas
+            };
 
-        await _todoListRepository.AddAsync(todoList);
-        await _todoListRepository.SaveChangesAsync();
-        return todoList;
+            _context.Add(todolist);
+            await _context.SaveChangesAsync();
+            
+            resposta.Dados = await _context.TodoLists.ToListAsync();
+            resposta.Mensagem = "To do criado com sucesso!";
+            return resposta;
+        }
+        catch (Exception ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+            return resposta;
+        }
     }
 
-    public async Task<Domain.Entities.TodoList> UpdateAsync(Domain.Entities.TodoList todoList, Guid userId)
+    public async Task<Response<List<Domain.Entities.TodoList>>> AtualizarTodoList(EditTodoListDto editTodoListDto)
     {
-        var existingTodoList = await _todoListRepository.GetByIdAsync(todoList.Id);
+        Response<List<Domain.Entities.TodoList>> resposta = new Response<List<Domain.Entities.TodoList>>();
+        
+        try
+        {
+            var todoList = await _context.TodoLists
+                .FirstOrDefaultAsync(todoListBanco => todoListBanco.Id == editTodoListDto.Id);
 
-        if (existingTodoList == null || existingTodoList.UserId != userId)
-            throw new KeyNotFoundException("Lista não encontrada.");
+            if (todoList == null)
+            {
+                resposta.Mensagem = "Nenhum to do localizado!";
+                resposta.Status = false;
+            }
+            
+            todoList.Nome = editTodoListDto.Nome;
+            todoList.Usuario = editTodoListDto.Usuario;
+            todoList.Deadline = editTodoListDto.Deadline;
+            todoList.Tarefas = editTodoListDto.Tarefas;
 
-        existingTodoList.Nome = todoList.Nome;
+            _context.Update(todoList);
+            await _context.SaveChangesAsync();
 
-        await _todoListRepository.Update(existingTodoList);
-        await _todoListRepository.SaveChangesAsync();
-        return existingTodoList;
+            resposta.Dados = await _context.TodoLists.ToListAsync();
+            resposta.Mensagem = "To do atualizado com sucesso!";
+            
+            return resposta;
+            
+        }
+        catch (Exception ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+            return resposta;
+        }
     }
 
-    public async Task DeleteAsync(Guid id, Guid userId)
+    public async Task<Response<List<Domain.Entities.TodoList>>> DeletarTodoList(int idTodoList)
     {
-        var todoList = await _todoListRepository.GetByIdAsync(id);
+        Response<List<Domain.Entities.TodoList>> resposta = new Response<List<Domain.Entities.TodoList>>();
 
-        if (todoList == null || todoList.UserId != userId)
-            throw new KeyNotFoundException("Lista não encontrada.");
+        try
+        {
+            var todoList = await _context.TodoLists
+                .FirstOrDefaultAsync(todoListBanco => todoListBanco.Id == idTodoList);
 
-        await _todoListRepository.Delete(todoList);
-        await _todoListRepository.SaveChangesAsync();
+            if (todoList == null)
+            {
+                resposta.Mensagem = "Nenhum to do localizado!";
+                resposta.Status = false;
+            }
+
+            _context.Remove(todoList);
+            await _context.SaveChangesAsync();
+
+            resposta.Dados = await _context.TodoLists.ToListAsync();
+            resposta.Mensagem = "To do deletado com sucesso!";
+            
+            return resposta;
+            
+        }
+        catch (Exception ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+            return resposta;
+        }
     }
 }

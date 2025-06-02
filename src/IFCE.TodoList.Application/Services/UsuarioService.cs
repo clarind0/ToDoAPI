@@ -1,56 +1,89 @@
+using IFCE.TodoList.Application.Interfaces;
 using IFCE.TodoList.Domain.Repositories;
 using IFCE.TodoList.Domain.Entities;
-using IFCE.TodoList.Domain.Services;
+using IFCE.TodoList.Infra.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 using Task = System.Threading.Tasks.Task;
 
 namespace IFCE.TodoList.Application.Services;
 
-public class UsuarioService : IUsuarioService
+public class UsuarioService : IUsuarioInterface
 {
-    private readonly IUsuarioRepository _usuariorepository;
+    private readonly ApplicationDbContext _context;
 
-    public UsuarioService(IUsuarioRepository usuariorepository)
+    public UsuarioService(ApplicationDbContext context)
     {
-        _usuariorepository = usuariorepository;
+        _context = context;
     }
-
-    public async Task<Usuario?> GetByIdAsync(Guid id)
+    public async Task<Response<List<Usuario>>> ListarUsuarios()
     {
-        return await _usuariorepository.GetByIdAsync(id);
-    }
-
-    public async Task<Usuario?> GetByEmailAsync(string email)
-    {
-        return await _usuariorepository.GetByEmailAsync(email);
-    }
-
-    public async Task<IEnumerable<Usuario>> GetAllAsync()
-    {
-        return await _usuariorepository.GetAllAsync();
-    }
-
-    public async Task<Usuario> CreateAsync(Usuario usuario)
-    {
-        await _usuariorepository.AddAsync(usuario);
-        await _usuariorepository.SaveChangesAsync();
-        return usuario;
-    }
-    
-    public async Task<Usuario> UpdateAsync(Usuario usuario)
-    {
-        await _usuariorepository.Update(usuario);
-        await _usuariorepository.SaveChangesAsync();
-        return usuario;
-    }
-    
-    public async Task DeleteAsync(Guid id)
-    {
-        var usuario = await _usuariorepository.GetByIdAsync(id);
-        if (usuario != null)
+        Response<List<Usuario>> resposta = new Response<List<Usuario>>();
+        try
         {
-            await _usuariorepository.Delete(usuario);
-            await _usuariorepository.SaveChangesAsync();
+            var usuarios = await _context.Usuarios.ToListAsync();
+            
+            resposta.Dados = usuarios;
+            resposta.Mensagem = "Todos os usuarios foram coletados com sucesso!";
+            
+            return resposta;
+        }
+        catch (Exception ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+            return resposta;
         }
     }
-    
+
+    public async Task<Response<Usuario>> BuscarUsuarioPorId(int idUsuario)
+    {
+        Response<Usuario> resposta = new Response<Usuario>();
+        try
+        {
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(usuarioBanco => usuarioBanco.Id == idUsuario);
+
+            if (usuario == null)
+            {
+                resposta.Mensagem = "Nenhum registro localizado!";
+                return resposta;
+            }
+            
+            resposta.Dados = usuario;
+            resposta.Mensagem = "Usuário localizado com sucesso!";
+            
+            return resposta;
+        }
+        catch (Exception ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+            return resposta;
+        }
+    }
+
+    public async Task<Response<Usuario>> BuscarUsuarioPorIdTodoList(int idTodoList)
+    {
+        Response<Usuario> resposta = new Response<Usuario>();
+        try
+        {
+            var todoList = await _context.TodoLists
+                .Include(a => a.Usuario).FirstOrDefaultAsync(todoListBanco => todoListBanco.Id == idTodoList);
+
+            if (todoList == null)
+            {
+                resposta.Mensagem = "Nenhum usuario localizado!";
+                return resposta;
+            }
+
+            resposta.Dados = todoList.Usuario;
+            resposta.Mensagem = "Usuario localizado com sucesso!";
+            return resposta;
+        }
+        catch (Exception ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+            return resposta;
+        }
+    }
 }

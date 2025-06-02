@@ -8,8 +8,11 @@
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.AssemblyInfoInputs.cache
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.AssemblyInfo.cs
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.csproj.CoreCompileInputs.cache
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.sourcelink.json
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.dll
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/refint/IFCE.TodoList.Application.dll
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.pdb
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/ref/IFCE.TodoList.Application.dll
-/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.Tod.ADC005A8.Up2Date
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/bin/Debug/net8.0/IFCE.TodoList.Infra.Data.dll
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/bin/Debug/net8.0/IFCE.TodoList.Infra.Data.pdb
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.csproj.CopyComplete

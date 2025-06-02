@@ -8,7 +8,7 @@ public class ApplicationDbContext :  DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
     
-    private readonly string _connectionString = "Server=localhost;Database=TodoList;User Id=sa;Password=<PASSWORD>;";
+    private readonly string _connectionString = "server=localhost;port=3306;database=ifce_todolist;user=root;password=Lab@inf019;";
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -17,13 +17,14 @@ public class ApplicationDbContext :  DbContext
         }
     }
 
-    public DbSet<Usuario> Usuarios { get; set; } = null!;
-    public DbSet<Tarefa> Tarefas { get; set; } = null!;
-    public DbSet<Domain.Entities.TodoList> TodoLists { get; set; } = null!;
 
+    public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Tarefa> Tarefas { get; set; }
+    public DbSet<Domain.Entities.TodoList> TodoLists { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
+
 
 }

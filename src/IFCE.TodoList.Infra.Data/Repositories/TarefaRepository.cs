@@ -14,9 +14,4 @@ public class TarefaRepository : Repository<Tarefa>, ITarefaRepository
     {
         _context = context;
     }
-
-    public async Task<List<Tarefa>> GetTasksByUserIdAsync(Guid userId)
-    {
-        return await _context.Tarefas.Where(t => t.UserId == userId).ToListAsync();
-    }
 }

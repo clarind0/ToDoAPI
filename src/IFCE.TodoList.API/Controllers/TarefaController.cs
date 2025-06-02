@@ -1,7 +1,7 @@
 using System.Security.Claims;
+using IFCE.TodoList.Application.DTO;
+using IFCE.TodoList.Application.Interfaces;
 using IFCE.TodoList.Domain.Entities;
-using IFCE.TodoList.Domain.Interfaces;
-using IFCE.TodoList.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,59 +9,51 @@ namespace IFCE.TodoList.API.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/tarefas")]
+[Route("api/tarefa")]
 public class TarefaController : ControllerBase
 {
-    private readonly ITarefaService _tarefaService;
+    private readonly ITarefaInterface _tarefaInterface;
 
-    public TarefaController(ITarefaService tarefaService)
+    public TarefaController(ITarefaInterface tarefaInterface)
     {
-        _tarefaService = tarefaService;
+        _tarefaInterface = tarefaInterface;
     }
-
-    private Guid GetUserId() =>
-        Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? throw new UnauthorizedAccessException());
-
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetById(Guid id)
+    
+    [HttpGet("ListarTarefas")]
+    public async Task<ActionResult<Response<List<Tarefa>>>> ListarTarefas()
     {
-        var tarefa = await _tarefaService.GetByIdAsync(id);
-        if (tarefa == null) return NotFound();
+        var tarefas = await _tarefaInterface.ListarTarefas();
+        
+        return Ok(tarefas);
+    }
+    
+    [HttpGet("BuscarTarefaPorId/{idTarefa}")]
+    public async Task<ActionResult<Response<Tarefa>>> BuscarTarefaPorId(int idTarefa)
+    {
+        var tarefa = await _tarefaInterface.BuscarTarefaPorId(idTarefa);
+        
         return Ok(tarefa);
     }
-
-    [HttpGet("lista/{todoListId:guid}")]
-    public async Task<IActionResult> GetByTodoList(Guid assignmentListId)
+    
+    [HttpGet("BuscarTarefaPorIdTodoList/{idTodoList}")]
+    public async Task<ActionResult<Response<Tarefa>>> BuscarTarefaPorIdTodoList(int idTodoList)
     {
-        var userId = GetUserId();
-        var tarefas = await _tarefaService.GetByUserIdAsync(userId);
-        return Ok(tarefas.Where(t => t.AssignmentListId == assignmentListId));
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Tarefa tarefa)
-    {
-        var userId = GetUserId();
-        if (tarefa.AssignmentListId == Guid.Empty) return BadRequest("Lista de tarefas inválida.");
-
-        tarefa.UserId = userId;
-        var newTarefa = await _tarefaService.CreateAsync(tarefa);
-        return CreatedAtAction(nameof(GetById), new { id = newTarefa.Id }, newTarefa);
-    }
-
-    [HttpPut("{id:guid}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] Tarefa tarefa)
-    {
-        if (id != tarefa.Id) return BadRequest("IDs não conferem.");
+        var tarefa = await _tarefaInterface.BuscarTarefaPorIdTodoList(idTodoList);
         
-        var updatedTarefa = await _tarefaService.UpdateAsync(tarefa);
-        return Ok(updatedTarefa);
+        return Ok(tarefa);
     }
-
-    [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> Delete(Guid id)
+    
+    [HttpPut("AtualizarTarefa")]
+    public async Task<ActionResult<Response<List<Tarefa>>>> AtualizarTarefa(EditTarefaDto editTarefaDto)
     {
-        await _tarefaService.DeleteAsync(id);
-        return NoContent();
+        var tarefas = await _tarefaInterface.AtualizarTarefa(editTarefaDto);
+        return Ok(tarefas);
+    }
+    
+    [HttpDelete("DeletarTarefa/{idTarefa}")]
+    public async Task<ActionResult<Response<List<Tarefa>>>> DeletarTarefa(int idTarefa)
+    {
+        var tarefas = await _tarefaInterface.DeletarTarefa(idTarefa);
+        return Ok(tarefas);
     }
 }

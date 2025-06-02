@@ -4,68 +4,6 @@
     "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Infra.Data/IFCE.TodoList.Infra.Data.csproj": {}
   },
   "projects": {
-    "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/IFCE.TodoList.Application.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/IFCE.TodoList.Application.csproj",
-        "projectName": "IFCE.TodoList.Application",
-        "projectPath": "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/IFCE.TodoList.Application.csproj",
-        "packagesPath": "/home/guilherme/.nuget/packages/",
-        "outputPath": "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/guilherme/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {
-              "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/IFCE.TodoList.Domain.csproj": {
-                "projectPath": "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/IFCE.TodoList.Domain.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        }
-      },
-      "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/home/guilherme/.dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/IFCE.TodoList.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -94,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -107,7 +40,7 @@
           "dependencies": {
             "FluentValidation": {
               "target": "Package",
-              "version": "[12.0.0-preview1, )"
+              "version": "[11.10.0, )"
             }
           },
           "imports": [
@@ -126,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/guilherme/.dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -152,9 +85,6 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/IFCE.TodoList.Application.csproj": {
-                "projectPath": "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/IFCE.TodoList.Application.csproj"
-              },
               "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/IFCE.TodoList.Domain.csproj": {
                 "projectPath": "/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Domain/IFCE.TodoList.Domain.csproj"
               }
@@ -165,11 +95,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -217,7 +142,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/guilherme/.dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
