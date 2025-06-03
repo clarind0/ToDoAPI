@@ -6,7 +6,7 @@ public class Tarefa
 {
     public int Id { get; set; }
     public string Descricao { get; set; } = string.Empty;
-    public int IdTodoList { get; set; }
+    public int? IdTodoList { get; set; }
     public TodoList? TodoList { get; set; }
     [JsonIgnore]
     

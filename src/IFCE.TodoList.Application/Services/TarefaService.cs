@@ -99,6 +99,7 @@ public class TarefaService : ITarefaInterface
             var tarefa = new Tarefa()
             {
                 Descricao = createTarefaDto.Descricao,
+                IdTodoList = createTarefaDto.IdTodoList,
                 TodoList = createTarefaDto.TodoList
             };
 
@@ -133,6 +134,7 @@ public class TarefaService : ITarefaInterface
             }
             
             tarefa.Descricao = editTarefaDto.Descricao;
+            tarefa.IdTodoList = editTarefaDto.IdTodoList;
             tarefa.TodoList = editTarefaDto.TodoList;
             tarefa.Concluded = editTarefaDto.Concluded;
             tarefa.ConcludedAt = editTarefaDto.ConcludedAt;

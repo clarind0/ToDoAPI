@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IFCE.TodoList.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e6575034a850f7143cbabb34cc0950a894e1260")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fdfa71f40dc3deb3244358e69277d409c704dbed")]
 [assembly: System.Reflection.AssemblyProductAttribute("IFCE.TodoList.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IFCE.TodoList.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

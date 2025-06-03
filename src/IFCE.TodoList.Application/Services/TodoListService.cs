@@ -98,7 +98,7 @@ public class TodoListService : ITodoListInterface
             var todolist = new Domain.Entities.TodoList()
             {
                 Nome = createTodoListDto.Nome,
-                Usuario = createTodoListDto.Usuario,
+                IdUsuario = createTodoListDto.IdUsuario,
                 Deadline = createTodoListDto.Deadline,
                 Tarefas = createTodoListDto.Tarefas
             };
@@ -134,7 +134,7 @@ public class TodoListService : ITodoListInterface
             }
             
             todoList.Nome = editTodoListDto.Nome;
-            todoList.Usuario = editTodoListDto.Usuario;
+            todoList.IdUsuario = editTodoListDto.IdUsuario;
             todoList.Deadline = editTodoListDto.Deadline;
             todoList.Tarefas = editTodoListDto.Tarefas;
 

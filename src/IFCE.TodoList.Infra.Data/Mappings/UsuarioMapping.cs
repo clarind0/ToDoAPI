@@ -9,8 +9,8 @@ public class UsuarioMapping : IEntityTypeConfiguration<Usuario>
     public void Configure(EntityTypeBuilder<Usuario> builder)
     {
         builder.HasKey(u => u.Id);
-        
-        builder.Property(u => u.Id).ValueGeneratedNever();
+
+        builder.Property(u => u.Id).ValueGeneratedOnAdd();
 
         builder.Property(u => u.Nome)
             .IsRequired()
@@ -25,7 +25,7 @@ public class UsuarioMapping : IEntityTypeConfiguration<Usuario>
 
         builder.HasMany(u => u.TodoLists)
             .WithOne(l => l.Usuario)
-            .HasForeignKey(l => l.Id);
+            .HasForeignKey(l => l.IdUsuario);
     }
     
 }

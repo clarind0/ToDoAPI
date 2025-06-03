@@ -15,4 +15,4 @@
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Infra.Data/obj/Debug/net8.0/IFCE.TodoList.Infra.Data.pdb
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Infra.Data/obj/Debug/net8.0/IFCE.TodoList.Infra.Data.genruntimeconfig.cache
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Infra.Data/obj/Debug/net8.0/ref/IFCE.TodoList.Infra.Data.dll
-/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Infra.Data/obj/Debug/net8.0/IFCE.TodoList.Infra.Data.csproj.CopyComplete
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Infra.Data/obj/Debug/net8.0/IFCE.Tod.AD4249F9.Up2Date

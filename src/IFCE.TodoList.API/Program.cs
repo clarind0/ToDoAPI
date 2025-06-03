@@ -25,6 +25,7 @@ builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 builder.Services.AddScoped<ITodoListInterface, TodoListService>();
 builder.Services.AddScoped<ITarefaInterface, TarefaService>();
 builder.Services.AddScoped<ITokenInterface, TokenService>();
+builder.Services.AddScoped<IUsuarioInterface, UsuarioService>();
 
 // --- Controllers ---
 builder.Services.AddControllers();

@@ -15,4 +15,4 @@
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/ref/IFCE.TodoList.Application.dll
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/bin/Debug/net8.0/IFCE.TodoList.Infra.Data.dll
 /home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/bin/Debug/net8.0/IFCE.TodoList.Infra.Data.pdb
-/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.TodoList.Application.csproj.CopyComplete
+/home/guilherme/RiderProjects/IFCE.TodoList/src/IFCE.TodoList.Application/obj/Debug/net8.0/IFCE.Tod.ADC005A8.Up2Date

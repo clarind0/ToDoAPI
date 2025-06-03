@@ -25,7 +25,7 @@ public class TarefaMapping : IEntityTypeConfiguration<Tarefa>
 
         builder.HasOne(t => t.TodoList)
             .WithMany(l => l.Tarefas)
-            .HasForeignKey(t => t.TodoList)
+            .HasForeignKey(t => t.IdTodoList)
             .OnDelete(DeleteBehavior.SetNull);
     }
     
