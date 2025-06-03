@@ -8,7 +8,7 @@ public class ApplicationDbContext :  DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
     
-    private readonly string _connectionString = "server=localhost;port=3306;database=ifce_todolist;user=root;password=Lab@inf019;";
+    private readonly string _connectionString = "server=localhost;port=3306;database=ifce_todolist;user=;password=;";
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
