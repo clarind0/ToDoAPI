@@ -13,8 +13,7 @@ public class TodoList
     public ICollection<Tarefa>? Tarefas { get; set; }
     
     public DateTime? Deadline { get; set; }
-    [JsonIgnore]
     
-    public DateTime CreatedAt { get; set; } =  DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; } =  DateTime.UtcNow; 
     public DateTime UpdatedAt { get; set; } =  DateTime.UtcNow;
 }

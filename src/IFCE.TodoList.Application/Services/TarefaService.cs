@@ -100,7 +100,6 @@ public class TarefaService : ITarefaInterface
             {
                 Descricao = createTarefaDto.Descricao,
                 IdTodoList = createTarefaDto.IdTodoList,
-                TodoList = createTarefaDto.TodoList
             };
 
             _context.Add(tarefa);
@@ -118,14 +117,14 @@ public class TarefaService : ITarefaInterface
         }
     }
     
-    public async Task<Response<List<Tarefa>>> AtualizarTarefa(EditTarefaDto editTarefaDto)
+    public async Task<Response<List<Tarefa>>> AtualizarTarefa(int idTarefa, EditTarefaDto editTarefaDto)
     {
         Response<List<Tarefa>> resposta = new Response<List<Tarefa>>();
         
         try
         {
             var tarefa = await _context.Tarefas
-                .FirstOrDefaultAsync(tarefaBanco => tarefaBanco.Id == editTarefaDto.Id);
+                .FirstOrDefaultAsync(tarefaBanco => tarefaBanco.Id == idTarefa);
 
             if (tarefa == null)
             {
@@ -135,7 +134,6 @@ public class TarefaService : ITarefaInterface
             
             tarefa.Descricao = editTarefaDto.Descricao;
             tarefa.IdTodoList = editTarefaDto.IdTodoList;
-            tarefa.TodoList = editTarefaDto.TodoList;
             tarefa.Concluded = editTarefaDto.Concluded;
             tarefa.ConcludedAt = editTarefaDto.ConcludedAt;
 

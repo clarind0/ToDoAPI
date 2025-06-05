@@ -52,10 +52,10 @@ public class TodoListController : ControllerBase
         return Ok(todoLists);
     }
 
-    [HttpPut("AtualizarTodoList")]
-    public async Task<ActionResult<Response<List<Domain.Entities.TodoList>>>> AtualizarTodoList(EditTodoListDto editTodoListDto)
+    [HttpPut("AtualizarTodoList/{idTodoList}")]
+    public async Task<ActionResult<Response<List<Domain.Entities.TodoList>>>> AtualizarTodoList(int idTodoList, EditTodoListDto editTodoListDto)
     {
-        var todoLists = await _todoListInterface.AtualizarTodoList(editTodoListDto);
+        var todoLists = await _todoListInterface.AtualizarTodoList(idTodoList, editTodoListDto);
         return Ok(todoLists);
     }
             

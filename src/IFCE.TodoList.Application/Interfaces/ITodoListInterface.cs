@@ -9,6 +9,6 @@ public interface ITodoListInterface
     Task<Response<Domain.Entities.TodoList>> BuscarTodoListPorId(int idTodoList);
     Task<Response<Domain.Entities.TodoList>> BuscarTodoListPorIdUsuario(int idUsuario);
     Task<Response<List<Domain.Entities.TodoList>>> CriarTodoList(CreateTodoListDto createTodoListDto);         
-    Task<Response<List<Domain.Entities.TodoList>>> AtualizarTodoList(EditTodoListDto editTodoListDto);
+    Task<Response<List<Domain.Entities.TodoList>>> AtualizarTodoList(int idTodoList, EditTodoListDto editTodoListDto);
     Task<Response<List<Domain.Entities.TodoList>>> DeletarTodoList(int idTodoList);
 }   

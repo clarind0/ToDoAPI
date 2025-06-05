@@ -42,11 +42,19 @@ public class TarefaController : ControllerBase
         
         return Ok(tarefa);
     }
-    
-    [HttpPut("AtualizarTarefa")]
-    public async Task<ActionResult<Response<List<Tarefa>>>> AtualizarTarefa(EditTarefaDto editTarefaDto)
+
+    [HttpPost("CriarTarefa")]
+    public async Task<ActionResult<Response<List<Domain.Entities.TodoList>>>> CriarTarefa(CreateTarefaDto createTarefaDto)
     {
-        var tarefas = await _tarefaInterface.AtualizarTarefa(editTarefaDto);
+        var tarefas = await _tarefaInterface.CriarTarefa(createTarefaDto);
+        
+        return Ok(tarefas);
+    }
+    
+    [HttpPut("AtualizarTarefa/{idTarefa}")]
+    public async Task<ActionResult<Response<List<Tarefa>>>> AtualizarTarefa(int idTarefa, EditTarefaDto editTarefaDto)
+    {
+        var tarefas = await _tarefaInterface.AtualizarTarefa(idTarefa, editTarefaDto);
         return Ok(tarefas);
     }
     

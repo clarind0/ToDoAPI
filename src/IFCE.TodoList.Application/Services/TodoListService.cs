@@ -21,7 +21,7 @@ public class TodoListService : ITodoListInterface
         Response<List<Domain.Entities.TodoList>> resposta = new Response<List<Domain.Entities.TodoList>>();
         try
         {
-            var todoList = await _context.TodoLists.ToListAsync();
+            var todoList = await _context.TodoLists.Include(x => x.Tarefas).ToListAsync();
             
             resposta.Dados = todoList;
             resposta.Mensagem = "Todos os to do's foram coletados com sucesso!";
@@ -41,17 +41,18 @@ public class TodoListService : ITodoListInterface
         Response<Domain.Entities.TodoList> resposta = new Response<Domain.Entities.TodoList>();
         try
         {
-            var todoList = await _context.TodoLists.FirstOrDefaultAsync(todoListBanco => todoListBanco.Id == idTodoList);
+            var todoList =
+                await _context.TodoLists.FirstOrDefaultAsync(todoListBanco => todoListBanco.Id == idTodoList);
 
             if (todoList == null)
             {
                 resposta.Mensagem = "Nenhum registro localizado!";
                 return resposta;
             }
-            
+
             resposta.Dados = todoList;
             resposta.Mensagem = "To do localizado com sucesso!";
-            
+
             return resposta;
         }
         catch (Exception ex)
@@ -98,9 +99,9 @@ public class TodoListService : ITodoListInterface
             var todolist = new Domain.Entities.TodoList()
             {
                 Nome = createTodoListDto.Nome,
+                Descricao = createTodoListDto.Descricao,
                 IdUsuario = createTodoListDto.IdUsuario,
                 Deadline = createTodoListDto.Deadline,
-                Tarefas = createTodoListDto.Tarefas
             };
 
             _context.Add(todolist);
@@ -118,25 +119,25 @@ public class TodoListService : ITodoListInterface
         }
     }
 
-    public async Task<Response<List<Domain.Entities.TodoList>>> AtualizarTodoList(EditTodoListDto editTodoListDto)
+    public async Task<Response<List<Domain.Entities.TodoList>>> AtualizarTodoList(int idTodoList, EditTodoListDto editTodoListDto)
     {
         Response<List<Domain.Entities.TodoList>> resposta = new Response<List<Domain.Entities.TodoList>>();
         
         try
         {
             var todoList = await _context.TodoLists
-                .FirstOrDefaultAsync(todoListBanco => todoListBanco.Id == editTodoListDto.Id);
+                .FirstOrDefaultAsync(todoListBanco => todoListBanco.Id == idTodoList);
 
             if (todoList == null)
             {
                 resposta.Mensagem = "Nenhum to do localizado!";
                 resposta.Status = false;
             }
-            
+
             todoList.Nome = editTodoListDto.Nome;
+            todoList.Descricao = editTodoListDto.Descricao;
             todoList.IdUsuario = editTodoListDto.IdUsuario;
             todoList.Deadline = editTodoListDto.Deadline;
-            todoList.Tarefas = editTodoListDto.Tarefas;
 
             _context.Update(todoList);
             await _context.SaveChangesAsync();

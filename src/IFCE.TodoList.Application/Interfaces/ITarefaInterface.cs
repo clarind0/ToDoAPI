@@ -9,6 +9,6 @@ public interface ITarefaInterface
     Task<Response<Tarefa>> BuscarTarefaPorId(int idTarefa);
     Task<Response<Tarefa>> BuscarTarefaPorIdTodoList(int idTodoList);
     Task<Response<List<Tarefa>>> CriarTarefa(CreateTarefaDto createTarefaDto);         
-    Task<Response<List<Tarefa>>> AtualizarTarefa(EditTarefaDto editTarefaDto);
+    Task<Response<List<Tarefa>>> AtualizarTarefa(int idTarefa, EditTarefaDto editTarefaDto);
     Task<Response<List<Tarefa>>> DeletarTarefa(int idTarefa);
 }
